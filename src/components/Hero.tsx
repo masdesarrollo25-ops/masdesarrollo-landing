@@ -1,25 +1,65 @@
+"use client";
+
+import { motion } from "framer-motion";
+import PremiumBackground from "./PremiumBackground";
+
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 bg-gradient-to-b from-black via-zinc-900 to-black">
-      <div className="max-w-4xl text-center">
-        <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-          Diseño y desarrollo de páginas web profesionales desde 400€
-        </h1>
+    <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden bg-black text-white">
 
-        <p className="mt-6 text-lg text-gray-300">
-          Webs modernas, optimizadas y listas para generar clientes.
-          Ideal para autónomos y negocios locales.
-        </p>
+      <PremiumBackground />
 
-        <div className="mt-8 flex justify-center gap-4">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        className="relative max-w-5xl text-center"
+      >
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="text-sm uppercase tracking-[0.3em] text-zinc-500 mb-6"
+        >
+          MASDESARROLLO · ESTUDIO DIGITAL
+        </motion.p>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="text-5xl md:text-7xl font-semibold leading-tight"
+        >
+          Diseñamos experiencias digitales
+          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-300 to-zinc-500">
+            que convierten en clientes
+          </span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+          className="mt-8 text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed"
+        >
+          Desarrollo web estratégico para negocios que quieren posicionarse,
+          destacar y vender más.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9 }}
+          className="mt-10"
+        >
           <a
             href="#contacto"
-            className="bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition"
+            className="inline-flex items-center justify-center px-10 py-4 rounded-xl bg-white text-black font-medium transition duration-300 hover:scale-105"
           >
             Solicitar presupuesto
           </a>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

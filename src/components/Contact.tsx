@@ -1,67 +1,76 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function Contact() {
   return (
-    <section
-      id="contacto"
-      className="relative min-h-screen flex items-center justify-center px-6 py-24 bg-gradient-to-b from-black to-zinc-900 text-white"
-    >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.05),transparent_70%)]"></div>
+    <section id="contacto" className="relative py-32 px-6 bg-black text-white">
+      <motion.div
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center"
+      >
+        <div>
+          <p className="text-sm uppercase tracking-[0.3em] text-zinc-500 mb-6">
+            Contacto
+          </p>
 
-      <div className="relative max-w-xl w-full bg-zinc-950/60 backdrop-blur-xl p-8 rounded-2xl border border-zinc-800 shadow-2xl">
-        <h2 className="text-3xl md:text-4xl font-bold text-center">
-          Solicita tu presupuesto
-        </h2>
+          <h2 className="text-4xl md:text-5xl font-semibold">
+            Hablemos de tu proyecto
+          </h2>
 
-        <p className="text-zinc-400 text-center mt-4">
-          Cuéntame tu idea y te responderé en menos de 24 horas.
-        </p>
-
-        <form
-          action="https://formsubmit.co/masdesarrollo25@gmail.com"
-          method="POST"
-          className="mt-8 space-y-5"
-        >
-          <input
-            type="text"
-            name="name"
-            placeholder="Tu nombre"
-            required
-            className="w-full p-4 rounded-xl bg-zinc-900 border border-zinc-700 focus:border-white outline-none transition"
-          />
-
-          <input
-            type="email"
-            name="email"
-            placeholder="Tu email"
-            required
-            className="w-full p-4 rounded-xl bg-zinc-900 border border-zinc-700 focus:border-white outline-none transition"
-          />
-
-          <textarea
-            name="message"
-            placeholder="Cuéntame qué necesitas..."
-            required
-            rows={5}
-            className="w-full p-4 rounded-xl bg-zinc-900 border border-zinc-700 focus:border-white outline-none transition"
-          ></textarea>
-
-          <button
-            type="submit"
-            className="w-full bg-white text-black py-4 rounded-xl font-semibold hover:scale-105 transition transform duration-200"
-          >
-            Enviar solicitud
-          </button>
-        </form>
-
-        <div className="mt-8 text-center">
-          <a
-            href="https://wa.me/34666727945"
-            target="_blank"
-            className="inline-block bg-green-500 hover:bg-green-400 text-black font-semibold px-6 py-3 rounded-xl transition"
-          >
-            O escríbeme por WhatsApp
-          </a>
+          <p className="mt-6 text-zinc-400 leading-relaxed max-w-md">
+            Cuéntame qué necesitas y diseñaremos una solución alineada con tus objetivos.
+          </p>
         </div>
-      </div>
+
+        <div className="bg-zinc-950 border border-zinc-800 rounded-2xl p-10 shadow-[0_0_80px_rgba(255,255,255,0.03)]">
+          <form
+            action="https://formsubmit.co/masdesarrollo25@gmail.com"
+            method="POST"
+            className="space-y-6"
+          >
+            <div>
+              <label className="text-sm text-zinc-400">Nombre</label>
+              <input
+                type="text"
+                name="name"
+                required
+                className="w-full mt-2 bg-transparent border-b border-zinc-700 focus:border-white outline-none py-3 transition"
+              />
+            </div>
+
+            <div>
+              <label className="text-sm text-zinc-400">Email</label>
+              <input
+                type="email"
+                name="email"
+                required
+                className="w-full mt-2 bg-transparent border-b border-zinc-700 focus:border-white outline-none py-3 transition"
+              />
+            </div>
+
+            <div>
+              <label className="text-sm text-zinc-400">Proyecto</label>
+              <textarea
+                name="message"
+                rows={4}
+                required
+                className="w-full mt-2 bg-transparent border-b border-zinc-700 focus:border-white outline-none py-3 transition resize-none"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full mt-6 bg-white text-black py-4 rounded-xl font-medium transition duration-300 hover:scale-105"
+            >
+              Enviar propuesta
+            </button>
+          </form>
+        </div>
+      </motion.div>
     </section>
   );
 }
