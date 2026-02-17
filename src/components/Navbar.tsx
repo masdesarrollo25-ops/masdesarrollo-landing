@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from 'next/image'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -15,20 +16,22 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-black/60 backdrop-blur-xl border-b border-zinc-800"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+    <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/40 border-b border-white/5">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
-        <span className="text-sm tracking-[0.3em] text-zinc-400">
-          MASDESARROLLO
-        </span>
+        {/* Logo */}
+        <div className="flex items-center gap-3">
+          <Image
+            src="/logo.png"
+            alt="MASDESARROLLO Logo"
+            width={100}
+            height={100}
+            priority
+          />
+        </div>
 
-        <nav className="hidden md:flex gap-10 text-sm text-zinc-400">
+        {/* Navigation */}
+        <nav className="hidden md:flex gap-8 text-sm text-zinc-400">
           <a href="#servicios" className="hover:text-white transition">
             Servicios
           </a>
