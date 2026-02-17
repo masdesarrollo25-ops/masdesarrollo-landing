@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="bg-black text-white min-h-screen flex items-center justify-center px-6">
+    <section className="relative min-h-screen flex items-center justify-center px-6 bg-gradient-to-b from-black via-zinc-900 to-black">
       <div className="max-w-4xl text-center">
         <h1 className="text-4xl md:text-6xl font-bold leading-tight">
           Diseño y desarrollo de páginas web profesionales desde 400€
