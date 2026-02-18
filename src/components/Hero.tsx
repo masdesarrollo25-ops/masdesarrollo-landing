@@ -21,7 +21,7 @@ export default function Hero() {
           transition={{ delay: 0.3 }}
           className="text-sm uppercase tracking-[0.3em] text-zinc-500 mb-6"
         >
-          MASDESARROLLO · ESTUDIO DIGITAL
+          MAS Desarrollo · ESTUDIO DIGITAL
         </motion.p>
 
         <motion.h1
