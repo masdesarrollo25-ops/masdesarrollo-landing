@@ -1,76 +1,104 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Contact() {
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData);
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+
+    setLoading(false);
+
+    if (res.ok) {
+      setSuccess(true);
+      e.currentTarget.reset();
+    }
+  }
+
   return (
     <section id="contacto" className="relative py-32 px-6 bg-black text-white">
-      <motion.div
-        initial={{ opacity: 0, y: 80 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center"
-      >
-        <div>
-          <p className="text-sm uppercase tracking-[0.3em] text-zinc-500 mb-6">
-            Contacto
-          </p>
+      <div className="max-w-4xl mx-auto">
+        <form onSubmit={handleSubmit} className="space-y-6">
 
-          <h2 className="text-4xl md:text-5xl font-semibold">
-            Hablemos de tu proyecto
-          </h2>
+          <input
+            type="text"
+            name="name"
+            placeholder="Nombre"
+            required
+            className="w-full bg-zinc-900 p-4 rounded-xl border border-zinc-800 focus:border-white outline-none transition"
+          />
 
-          <p className="mt-6 text-zinc-400 leading-relaxed max-w-md">
-            Cuéntame qué necesitas y diseñaremos una solución alineada con tus objetivos.
-          </p>
-        </div>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+            className="w-full bg-zinc-900 p-4 rounded-xl border border-zinc-800 focus:border-white outline-none transition"
+          />
 
-        <div className="bg-zinc-950 border border-zinc-800 rounded-2xl p-10 shadow-[0_0_80px_rgba(255,255,255,0.03)]">
-          <form
-            action="https://formsubmit.co/masdesarrollo25@gmail.com"
-            method="POST"
-            className="space-y-6"
+          <textarea
+            name="message"
+            placeholder="Cuéntame sobre tu proyecto"
+            required
+            rows={5}
+            className="w-full bg-zinc-900 p-4 rounded-xl border border-zinc-800 focus:border-white outline-none transition resize-none"
+          />
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-white text-black py-4 rounded-xl font-medium transition hover:scale-105"
           >
-            <div>
-              <label className="text-sm text-zinc-400">Nombre</label>
-              <input
-                type="text"
-                name="name"
-                required
-                className="w-full mt-2 bg-transparent border-b border-zinc-700 focus:border-white outline-none py-3 transition"
-              />
-            </div>
+            {loading ? "Enviando..." : "Enviar propuesta"}
+          </button>
+        </form>
+      </div>
 
-            <div>
-              <label className="text-sm text-zinc-400">Email</label>
-              <input
-                type="email"
-                name="email"
-                required
-                className="w-full mt-2 bg-transparent border-b border-zinc-700 focus:border-white outline-none py-3 transition"
-              />
-            </div>
-
-            <div>
-              <label className="text-sm text-zinc-400">Proyecto</label>
-              <textarea
-                name="message"
-                rows={4}
-                required
-                className="w-full mt-2 bg-transparent border-b border-zinc-700 focus:border-white outline-none py-3 transition resize-none"
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full mt-6 bg-white text-black py-4 rounded-xl font-medium transition duration-300 hover:scale-105"
+      {/* Modal animado */}
+      <AnimatePresence>
+        {success && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 flex items-center justify-center bg-black/80 backdrop-blur-xl z-50"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className="bg-zinc-950 border border-zinc-800 rounded-2xl p-12 text-center max-w-md"
             >
-              Enviar propuesta
-            </button>
-          </form>
-        </div>
-      </motion.div>
+              <h3 className="text-2xl font-semibold mb-4">
+                🚀 Mensaje enviado
+              </h3>
+              <p className="text-zinc-400 mb-6">
+                Te responderé en menos de 24 horas.
+              </p>
+              <button
+                onClick={() => setSuccess(false)}
+                className="bg-white text-black px-6 py-3 rounded-xl hover:scale-105 transition"
+              >
+                Cerrar
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </section>
   );
 }

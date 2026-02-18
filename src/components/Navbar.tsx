@@ -20,13 +20,15 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
         {/* Logo */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 relative">
+          <div className="absolute inset-0 blur-xl bg-white/25 rounded-full scale-150"></div>
           <Image
             src="/logo.png"
             alt="MASDESARROLLO Logo"
             width={100}
             height={100}
             priority
+            className="relative z-10"
           />
         </div>
 

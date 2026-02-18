@@ -26,7 +26,7 @@ export default function PremiumBackground() {
           background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.08), transparent 40%)`,
         }}
       />
-
+      
       {/* Blob Azul */}
       <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-600 opacity-20 blur-[120px] rounded-full animate-float"></div>
 
